@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>你是几级小泷包？· 罗曼城公民认证</title>
+<style>
+/* 本主题风格推导：粉色应援色 + 罗曼星球小怪物 + 罗曼城手账宇宙 → 奶油粉底色、粉彩点缀、手绘描边与贴纸错落排版。 */
+:root{
+  --color-primary:#C62E72;
+  --color-primary-dark:#9E2059;
+  --color-primary-soft:#F8CADD;
+  --color-primary-tint:#FDEAF2;
+  --color-bg:#FFF7F2;
+  --color-surface:#FFFFFF;
+  --color-surface-alt:#FFF1F6;
+  --color-accent:#FFB3C9;
+  --color-mint:#A9E5D2;
+  --color-violet:#D6C2F2;
+  --color-yellow:#FFE2A6;
+  --color-sky:#BFDFF6;
+  --color-orange:#F8A65C;
+  --color-ink:#4A2B39;
+  --color-ink-soft:#6F5560;
+  --color-ink-invert:#FFFFFF;
+  --color-line:#EBCBD8;
+  --color-sketch:#8B4A66;
+  --color-success:#237A5B;
+  --color-success-bg:#E3F5EC;
+  --color-error:#A82E54;
+  --color-error-bg:#FDE7EE;
+  --color-badge-1:#F8A65C;
+  --color-badge-2:#7FBCE8;
+  --color-badge-3:#B892E8;
+  --color-badge-4:#E0638E;
+  --color-badge-5:#C62E72;
+  --font-family:"Yuanti SC","YouYuan","幼圆","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --font-size-xs:12px;
+  --font-size-s:13px;
+  --font-size-m:15px;
+  --font-size-l:18px;
+  --font-size-xl:22px;
+  --font-size-xxl:30px;
+  --font-size-title:42px;
+  --font-weight-regular:400;
+  --font-weight-medium:600;
+  --font-weight-bold:800;
+  --line-height-tight:1.3;
+  --line-height-base:1.7;
+  --letter-spacing-tight:-0.02em;
+  --letter-spacing-wide:0.06em;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --radius-s:8px;
+  --radius-m:14px;
+  --radius-l:22px;
+  --radius-pill:999px;
+  --shadow-s:0 2px 8px rgba(139,74,102,0.10);
+  --shadow-m:0 8px 24px rgba(139,74,102,0.14);
+  --shadow-l:0 16px 40px rgba(139,74,102,0.18);
+  --border-width:2px;
+  --border-width-bold:3px;
+  --motion-fast:150ms;
+  --motion-base:300ms;
+  --motion-slow:500ms;
+  --motion-ease:cubic-bezier(.34,1.4,.64,1);
+  --motion-ease-out:cubic-bezier(.22,.8,.3,1);
+  --illustration-stroke:3;
+  --illustration-size-s:28px;
+  --illustration-size-m:48px;
+  --illustration-size-l:96px;
+  --illustration-size-xl:150px;
+  --layout-max:720px;
+  --layout-cols:1;
+  --layout-gap:var(--space-4);
+  --size-tap:44px;
+  --size-progress:12px;
+  --size-badge:120px;
+  --size-confetti:34px;
+  --progress:0;
+}
+@media (max-width:480px){
+  :root{--layout-max:100%;--layout-cols:1;--layout-gap:var(--space-3);}
+}
+@media (min-width:768px){
+  :root{--layout-max:900px;--layout-cols:2;}
+}
+@media (min-width:1200px){
+  :root{--layout-max:1080px;}
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:var(--font-family);
+  font-size:var(--font-size-m);
+  font-weight:var(--font-weight-regular);
+  line-height:var(--line-height-base);
+  color:var(--color-ink);
+  background-color:var(--color-bg);
+  background-image:radial-gradient(circle at 12% 8%,var(--color-primary-tint),transparent 38%),radial-gradient(circle at 88% 82%,var(--color-surface-alt),transparent 42%);
+  overflow-x:hidden;
+}
+button{font:inherit;color:inherit;cursor:pointer;}
+button:disabled{cursor:not-allowed;}
+:focus-visible{outline:var(--border-width-bold) solid var(--color-primary-dark);outline-offset:var(--space-1);}
+.svg-sprite{position:absolute;width:0;height:0;overflow:hidden;}
+svg[role="img"]{display:block;}
+.app{width:min(100% - var(--space-5),var(--layout-max));margin:0 auto;padding:var(--space-5) 0 var(--space-8);}
+[hidden]{display:none !important;}
+.site-header{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0 var(--space-5);}
+.site-header .mark{width:var(--illustration-size-m);height:var(--illustration-size-m);flex:none;}
+.brand{font-size:var(--font-size-s);font-weight:var(--font-weight-bold);letter-spacing:var(--letter-spacing-wide);color:var(--color-primary-dark);}
+.brand small{display:block;font-size:var(--font-size-xs);font-weight:var(--font-weight-regular);color:var(--color-ink-soft);letter-spacing:0;}
+.site-footer{margin-top:var(--space-7);text-align:center;font-size:var(--font-size-xs);color:var(--color-ink-soft);}
+.card{
+  position:relative;
+  background:var(--color-surface);
+  border:var(--border-width) solid var(--color-line);
+  border-radius:var(--radius-l);
+  padding:var(--space-6);
+  box-shadow:var(--shadow-m);
+}
+.card + .card{margin-top:var(--space-5);}
+.tape{
+  position:absolute;top:calc(var(--space-4) * -1);left:var(--space-6);
+  width:calc(var(--size-badge) * 0.8);height:var(--space-5);
+  background:var(--color-accent);opacity:.85;
+  border-radius:var(--radius-s);
+  transform:rotate(-4deg);
+  box-shadow:var(--shadow-s);
+}
+.tape::after{content:"";position:absolute;inset:var(--space-1);border:var(--border-width) dashed var(--color-ink-invert);border-radius:var(--radius-s);opacity:.7;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-1) var(--space-3);
+  border:var(--border-width) solid var(--color-primary-soft);
+  border-radius:var(--radius-pill);
+  background:var(--color-primary-tint);
+  color:var(--color-primary-dark);
+  font-size:var(--font-size-s);font-weight:var(--font-weight-bold);
+  transform:rotate(-1.5deg);
+}
+h1,h2,h3{line-height:var(--line-height-tight);letter-spacing:var(--letter-spacing-tight);margin:var(--space-3) 0;}
+h1{font-size:var(--font-size-title);font-weight:var(--font-weight-bold);color:var(--color-primary-dark);text-shadow:var(--space-1) var(--space-1) 0 var(--color-primary-soft);}
+h1 .sub{display:block;font-size:var(--font-size-l);font-weight:var(--font-weight-medium);color:var(--color-ink-soft);text-shadow:none;margin-top:var(--space-2);}
+h2{font-size:var(--font-size-xl);font-weight:var(--font-weight-bold);}
+h3{font-size:var(--font-size-l);font-weight:var(--font-weight-bold);}
+.lead{color:var(--color-ink-soft);font-size:var(--font-size-l);}
+.divider{height:var(--border-width);background:repeating-linear-gradient(90deg,var(--color-line) 0 var(--space-3),transparent var(--space-3) var(--space-5));border:0;margin:var(--space-5) 0;}
+.grid{display:grid;grid-template-columns:repeat(var(--layout-cols),minmax(0,1fr));gap:var(--layout-gap);}
+.hero-visual{display:flex;align-items:flex-end;justify-content:center;gap:var(--space-2);flex-wrap:wrap;padding:var(--space-4) 0;}
+.hero-visual svg{width:var(--illustration-size-l);height:var(--illustration-size-l);filter:drop-shadow(0 var(--space-1) 0 var(--color-primary-soft));animation:bob var(--motion-slow) var(--motion-ease) both;}
+.hero-visual svg:nth-child(odd){transform:rotate(-5deg);}
+.hero-visual svg:nth-child(even){transform:rotate(5deg);animation-delay:var(--motion-fast);}
+@keyframes bob{from{opacity:0;translate:0 var(--space-4);}to{opacity:1;translate:0 0;}}
+.fact-row{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:var(--space-4) 0 var(--space-5);}
+.chip{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  min-height:var(--size-tap);padding:var(--space-2) var(--space-4);
+  border:var(--border-width) solid var(--color-line);
+  border-radius:var(--radius-pill);
+  background:var(--color-surface-alt);
+  font-size:var(--font-size-s);font-weight:var(--font-weight-medium);
+  transition:transform var(--motion-fast) var(--motion-ease),background var(--motion-fast) var(--motion-ease-out),box-shadow var(--motion-fast) var(--motion-ease-out);
+}
+.chip:nth-child(2n){background:var(--color-mint);border-color:var(--color-mint);}
+.chip:nth-child(3n){background:var(--color-yellow);border-color:var(--color-yellow);}
+.chip:hover{transform:translateY(calc(var(--space-1) * -1)) rotate(-2deg);box-shadow:var(--shadow-s);}
+.chip:focus-visible{outline:var(--border-width-bold) solid var(--color-primary-dark);outline-offset:var(--space-1);}
+.chip.selected{background:var(--color-primary);border-color:var(--color-primary-dark);color:var(--color-ink-invert);}
+.chip:disabled{opacity:.55;}
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
+  min-height:var(--size-tap);padding:var(--space-3) var(--space-6);
+  border:var(--border-width-bold) solid var(--color-primary-dark);
+  border-radius:var(--radius-pill);
+  font-size:var(--font-size-l);font-weight:var(--font-weight-bold);
+  transition:transform var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) var(--motion-ease-out),background var(--motion-fast) var(--motion-ease-out),opacity var(--motion-fast) var(--motion-ease-out);
+}
+.btn:hover{transform:translateY(calc(var(--space-1) * -1));box-shadow:var(--shadow-m);}
+.btn:active{transform:scale(.97);}
+.btn:focus-visible{outline:var(--border-width-bold) solid var(--color-primary-dark);outline-offset:var(--space-1);}
+.btn:disabled{opacity:.5;transform:none;box-shadow:none;}
+.btn-primary{background:var(--color-primary);color:var(--color-ink-invert);box-shadow:var(--shadow-s);}
+.btn-primary:hover{background:var(--color-primary-dark);}
+.btn-ghost{background:var(--color-surface);color:var(--color-primary-dark);border-color:var(--color-primary-soft);}
+.btn-ghost:hover{background:var(--color-primary-tint);}
+.btn-deco{width:var(--illustration-size-s);height:var(--illustration-size-s);flex:none;}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-5);}
+.rule-card{margin-top:var(--space-5);border:var(--border-width) dashed var(--color-primary-soft);border-radius:var(--radius-m);background:var(--color-primary-tint);padding:var(--space-4);font-size:var(--font-size-s);color:var(--color-ink-soft);}
+.rule-card summary{cursor:pointer;font-weight:var(--font-weight-bold);color:var(--color-primary-dark);min-height:var(--size-tap);display:flex;align-items:center;}
+.rule-card p{margin:var(--space-2) 0;}
+.quiz-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-4);}
+.seg-label{font-size:var(--font-size-s);color:var(--color-ink-soft);font-weight:var(--font-weight-medium);}
+.progress-wrap{position:relative;padding-top:var(--illustration-size-m);margin-bottom:var(--space-5);}
+.progress{height:var(--size-progress);border:var(--border-width) solid var(--color-line);border-radius:var(--radius-pill);background:var(--color-surface);overflow:hidden;}
+.progress-fill{height:100%;width:calc(var(--progress) * 1%);background:linear-gradient(90deg,var(--color-primary-soft),var(--color-primary));border-radius:var(--radius-pill);transition:width var(--motion-base) var(--motion-ease-out);}
+.progress-runner{position:absolute;top:0;left:calc(var(--progress) * 1% - var(--illustration-size-m) / 2);width:var(--illustration-size-m);height:var(--illustration-size-m);transition:left var(--motion-base) var(--motion-ease-out);}
+.progress-runner svg{width:100%;height:100%;}
+.tier-chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-violet);color:var(--color-ink);font-size:var(--font-size-s);font-weight:var(--font-weight-bold);}
+.stem{font-size:var(--font-size-xl);font-weight:var(--font-weight-bold);line-height:var(--line-height-tight);margin:var(--space-3) 0 var(--space-5);}
+.options{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-3);}
+.option{
+  width:100%;display:flex;align-items:center;gap:var(--space-3);text-align:left;
+  min-height:var(--size-tap);padding:var(--space-3) var(--space-4);
+  border:var(--border-width) solid var(--color-line);
+  border-radius:var(--radius-m);
+  background:var(--color-surface);
+  font-size:var(--font-size-m);
+  transition:transform var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease-out),background var(--motion-fast) var(--motion-ease-out),box-shadow var(--motion-fast) var(--motion-ease-out);
+}
+.option:hover{border-color:var(--color-primary);background:var(--color-primary-tint);transform:translateX(var(--space-1));}
+.option:focus-visible{outline:var(--border-width-bold) solid var(--color-primary-dark);outline-offset:var(--space-1);}
+.option.selected{border-color:var(--color-primary);background:var(--color-primary-soft);box-shadow:var(--shadow-s);font-weight:var(--font-weight-bold);}
+.option.selected::after{content:"";width:var(--illustration-size-s);height:var(--illustration-size-s);margin-left:auto;flex:none;border-radius:var(--radius-pill);background:var(--color-primary);box-shadow:inset 0 0 0 var(--border-width) var(--color-ink-invert);}
+.option:disabled{opacity:.6;}
+.option-key{width:var(--size-tap);height:var(--size-tap);flex:none;display:grid;place-items:center;border-radius:var(--radius-pill);background:var(--color-surface-alt);border:var(--border-width) solid var(--color-line);font-weight:var(--font-weight-bold);}
+.option.selected .option-key{background:var(--color-primary);border-color:var(--color-primary-dark);color:var(--color-ink-invert);}
+.feedback{display:flex;align-items:center;gap:var(--space-2);margin-top:var(--space-4);padding:var(--space-3);border-radius:var(--radius-m);background:var(--color-primary-tint);font-size:var(--font-size-s);}
+.feedback svg{width:var(--illustration-size-m);height:var(--illustration-size-m);flex:none;}
+.feedback[hidden]{display:none;}
+.empty-state{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3);border:var(--border-width) dashed var(--color-line);border-radius:var(--radius-m);color:var(--color-ink-soft);font-size:var(--font-size-s);}
+.empty-state svg{width:var(--illustration-size-m);height:var(--illustration-size-m);flex:none;}
+.empty-state[hidden]{display:none;}
+.toast{
+  position:fixed;left:50%;bottom:var(--space-6);translate:-50% 0;
+  max-width:min(90vw,var(--layout-max));
+  padding:var(--space-3) var(--space-5);
+  border-radius:var(--radius-pill);
+  background:var(--color-primary-dark);color:var(--color-ink-invert);
+  font-size:var(--font-size-s);font-weight:var(--font-weight-bold);
+  box-shadow:var(--shadow-l);opacity:0;pointer-events:none;
+  transition:opacity var(--motion-base) var(--motion-ease-out),translate var(--motion-base) var(--motion-ease-out);
+  z-index:20;
+}
+.toast.show{opacity:1;translate:-50% calc(var(--space-2) * -1);}
+.result-hero{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-5);}
+.badge{position:relative;width:var(--size-badge);height:var(--size-badge);flex:none;display:grid;place-items:center;border-radius:var(--radius-pill);background:var(--color-primary-tint);border:var(--border-width-bold) dashed var(--color-primary-soft);}
+.badge svg{width:80%;height:80%;animation:pop var(--motion-slow) var(--motion-ease) both;}
+.badge-crown{position:absolute;top:calc(var(--space-2) * -1);right:calc(var(--space-2) * -1);width:var(--illustration-size-m);height:var(--illustration-size-m);}
+@keyframes pop{from{scale:.4;rotate:-14deg;}to{scale:1;rotate:0deg;}}
+.result-level{font-size:var(--font-size-xxl);font-weight:var(--font-weight-bold);color:var(--color-primary-dark);margin:0;}
+.score-line{font-size:var(--font-size-l);color:var(--color-ink-soft);}
+.score-line strong{color:var(--color-primary-dark);font-size:var(--font-size-xl);}
+.stat-row{display:grid;grid-template-columns:repeat(var(--layout-cols),minmax(0,1fr));gap:var(--layout-gap);margin:var(--space-5) 0;}
+.stat{padding:var(--space-4);border:var(--border-width) solid var(--color-line);border-radius:var(--radius-m);background:var(--color-surface-alt);}
+.stat dt{font-size:var(--font-size-s);color:var(--color-ink-soft);}
+.stat dd{margin:var(--space-1) 0 0;font-size:var(--font-size-xl);font-weight:var(--font-weight-bold);color:var(--color-primary-dark);}
+.dim-list{list-style:none;padding:0;margin:var(--space-4) 0;display:grid;gap:var(--space-3);}
+.dim-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-2);align-items:center;font-size:var(--font-size-s);}
+.dim-bar{grid-column:1 / -1;height:var(--size-progress);border-radius:var(--radius-pill);background:var(--color-surface-alt);border:var(--border-width) solid var(--color-line);overflow:hidden;}
+.dim-bar i{display:block;height:100%;border-radius:var(--radius-pill);background:var(--color-primary);}
+.advice{list-style:none;padding:0;margin:var(--space-4) 0;display:grid;gap:var(--space-3);counter-reset:advice;}
+.advice li{counter-increment:advice;display:flex;gap:var(--space-3);padding:var(--space-3) var(--space-4);border-radius:var(--radius-m);background:var(--color-surface-alt);border:var(--border-width) solid var(--color-line);}
+.advice li::before{content:counter(advice);flex:none;width:var(--size-tap);height:var(--size-tap);display:grid;place-items:center;border-radius:var(--radius-pill);background:var(--color-yellow);color:var(--color-ink);font-weight:var(--font-weight-bold);}
+.review-list{list-style:none;padding:0;margin:var(--space-4) 0;display:grid;gap:var(--space-3);}
+.review-item{padding:var(--space-3) var(--space-4);border:var(--border-width) solid var(--color-line);border-radius:var(--radius-m);background:var(--color-surface);font-size:var(--font-size-s);}
+.review-item.wrong{background:var(--color-error-bg);border-color:var(--color-error);}
+.review-item.correct{background:var(--color-success-bg);border-color:var(--color-success);}
+.review-head{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2);font-weight:var(--font-weight-bold);}
+.review-sticker{width:var(--illustration-size-s);height:var(--illustration-size-s);flex:none;}
+.review-meta{font-size:var(--font-size-xs);font-weight:var(--font-weight-medium);color:var(--color-ink-soft);}
+.review-stem{margin:var(--space-2) 0;font-weight:var(--font-weight-medium);}
+.review-answer{color:var(--color-ink-soft);}
+.review-answer b{color:var(--color-ink);}
+.review-explain{margin-top:var(--space-2);color:var(--color-ink);}
+.details-box{border:var(--border-width) dashed var(--color-line);border-radius:var(--radius-m);padding:var(--space-3);}
+.details-box summary{cursor:pointer;min-height:var(--size-tap);display:flex;align-items:center;font-weight:var(--font-weight-bold);color:var(--color-primary-dark);}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10;}
+.confetti span{position:absolute;top:calc(var(--size-confetti) * -1);width:var(--size-confetti);height:var(--size-confetti);opacity:0;animation:fall var(--motion-slow) var(--motion-ease-out) forwards;}
+.confetti svg{width:100%;height:100%;}
+@keyframes fall{0%{opacity:0;translate:0 0;rotate:0deg;}20%{opacity:1;}100%{opacity:0;translate:var(--space-7) 105vh;rotate:220deg;}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;}
+  .confetti{display:none;}
+}
+</style>
+</head>
+<body>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="char-sulong" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M28 34 L22 14 L42 28" fill="#F49AC1"/><path d="M72 34 L78 14 L58 28" fill="#F49AC1"/>
+        <path d="M18 62 Q10 50 20 42 Q28 36 34 44 L30 62" fill="#F8CADD"/>
+        <ellipse cx="50" cy="60" rx="34" ry="30" fill="#F49AC1"/>
+        <ellipse cx="50" cy="72" rx="20" ry="13" fill="#FDEAF2"/>
+        <path d="M20 82 Q14 94 26 94 L36 88" fill="#F49AC1"/><path d="M80 82 Q86 94 74 94 L64 88" fill="#F49AC1"/>
+        <circle cx="38" cy="55" r="4.5" fill="#4A2B39" stroke="none"/><circle cx="62" cy="55" r="4.5" fill="#4A2B39" stroke="none"/>
+        <circle cx="29" cy="64" r="5" fill="#F8A1BF" stroke="none"/><circle cx="71" cy="64" r="5" fill="#F8A1BF" stroke="none"/>
+        <path d="M44 66 Q50 72 56 66" fill="none"/>
+      </g>
+      <path d="M36 84 h28 v12 h-28 z" fill="#FFF3D6" stroke="#8B4A66" stroke-width="2"/><path d="M50 84 v12" stroke="#8B4A66" stroke-width="2"/>
+    </symbol>
+    <symbol id="char-futa" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M32 30 L22 8 L38 16 L34 28" fill="#FFE2A6"/><path d="M68 30 L78 8 L62 16 L66 28" fill="#FFE2A6"/>
+        <ellipse cx="50" cy="58" rx="33" ry="30" fill="#E0638E"/>
+        <rect x="8" y="56" width="20" height="20" rx="9" fill="#C62E72"/><rect x="72" y="56" width="20" height="20" rx="9" fill="#C62E72"/>
+        <circle cx="39" cy="54" r="4.5" fill="#4A2B39" stroke="none"/><circle cx="61" cy="54" r="4.5" fill="#4A2B39" stroke="none"/>
+        <path d="M42 68 Q50 76 58 68" fill="none"/>
+        <ellipse cx="50" cy="80" rx="9" ry="5" fill="#F8CADD"/>
+      </g>
+    </symbol>
+    <symbol id="char-happy" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round">
+        <circle cx="50" cy="52" r="33" fill="#C9A8EF"/>
+        <circle cx="22" cy="30" r="10" fill="#D6C2F2"/><circle cx="78" cy="30" r="10" fill="#D6C2F2"/><circle cx="17" cy="58" r="9" fill="#D6C2F2"/><circle cx="83" cy="58" r="9" fill="#D6C2F2"/>
+        <path d="M30 60 Q50 88 70 60 Z" fill="#4A2B39"/>
+        <path d="M33 61 h34 v9 h-34 z" fill="#FFFFFF" stroke="none"/>
+        <path d="M41 61 v9 M50 61 v9 M59 61 v9" stroke="#C9A8EF" stroke-width="2"/>
+        <circle cx="37" cy="43" r="4" fill="#4A2B39" stroke="none"/><circle cx="63" cy="43" r="4" fill="#4A2B39" stroke="none"/>
+      </g>
+    </symbol>
+    <symbol id="char-jiong" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M14 50 Q14 14 50 14 Q86 14 86 50 Z" fill="#BFDFF6"/>
+        <rect x="20" y="48" width="60" height="36" rx="16" fill="#EAF5FF"/>
+        <path d="M32 62 l10 -8 M68 62 l-10 -8" fill="none"/>
+        <circle cx="40" cy="68" r="3" fill="#4A2B39" stroke="none"/><circle cx="60" cy="68" r="3" fill="#4A2B39" stroke="none"/>
+        <path d="M45 76 h10" fill="none"/>
+        <circle cx="38" cy="34" r="5" fill="#FFFFFF" stroke="none"/><circle cx="64" cy="34" r="5" fill="#FFFFFF" stroke="none"/>
+      </g>
+    </symbol>
+    <symbol id="char-bomb" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 86 C22 66 14 48 24 36 C34 24 46 30 50 40 C54 30 66 24 76 36 C86 48 78 66 50 86 Z" fill="#F8A1BF"/>
+        <circle cx="39" cy="52" r="4" fill="#4A2B39" stroke="none"/><circle cx="61" cy="52" r="4" fill="#4A2B39" stroke="none"/>
+        <path d="M44 62 Q50 68 56 62" fill="none"/>
+        <path d="M14 22 h12 l6 -8 l8 16 l8 -12 h10" fill="none" stroke="#C62E72"/>
+      </g>
+    </symbol>
+    <symbol id="char-shizi" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="50" cy="58" r="33" fill="#F8A65C"/>
+        <path d="M36 26 Q50 14 64 26 Q50 34 36 26 Z" fill="#7FBF7A"/>
+        <path d="M50 26 v-12" fill="none"/>
+        <circle cx="39" cy="55" r="4" fill="#4A2B39" stroke="none"/><circle cx="61" cy="55" r="4" fill="#4A2B39" stroke="none"/>
+        <path d="M43 68 Q50 74 57 68" fill="none"/>
+        <circle cx="30" cy="64" r="5" fill="#F6C58E" stroke="none"/><circle cx="70" cy="64" r="5" fill="#F6C58E" stroke="none"/>
+      </g>
+    </symbol>
+    <symbol id="char-momo" viewBox="0 0 100 100">
+      <g stroke="#8B4A66" stroke-width="3" stroke-linejoin="round">
+        <ellipse cx="50" cy="56" rx="33" ry="30" fill="#A9E5D2"/>
+        <circle cx="38" cy="52" r="11" fill="#FFFFFF"/><circle cx="62" cy="52" r="11" fill="#FFFFFF"/>
+        <circle cx="38" cy="52" r="4.5" fill="#4A2B39" stroke="none"/><circle cx="62" cy="52" r="4.5" fill="#4A2B39" stroke="none"/>
+        <path d="M44 72 Q50 78 56 72" fill="none"/>
+      </g>
+    </symbol>
+    <symbol id="deco-paw" viewBox="0 0 40 40">
+      <g fill="#FFFFFF">
+        <ellipse cx="20" cy="26" rx="9" ry="7"/><circle cx="9" cy="16" r="4"/><circle cx="17" cy="11" r="4"/><circle cx="27" cy="11" r="4"/><circle cx="34" cy="17" r="4"/>
+      </g>
+    </symbol>
+    <symbol id="deco-crown" viewBox="0 0 60 50">
+      <path d="M6 40 L4 12 L20 26 L30 6 L40 26 L56 12 L54 40 Z" fill="#FFD36B" stroke="#8B4A66" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="30" cy="28" r="5" fill="#C62E72"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <header class="site-header">
+    <svg class="mark" role="img" aria-label="素龙，罗曼星球的粉色小龙"><title>素龙</title><use href="#char-sulong"/></svg>
+    <div class="brand">罗曼城公民认证中心<small>ROMANCE CITY · 小泷包等级测试</small></div>
+  </header>
+
+  <main>
+    <section id="page-home" class="page" aria-labelledby="home-title">
+      <div class="card">
+        <div class="tape" aria-hidden="true"></div>
+        <span class="eyebrow">粉色应援色 · 罗曼星球小怪物陪考</span>
+        <h1 id="home-title">你是几级小泷包？<span class="sub">40 道题，测测你在罗曼城的居住年限。</span></h1>
+        <p class="lead">从《慢慢懂》到「十万伏特」，从素龙到 22 位罗曼公民——这座城里的细节，你还记得多少？</p>
+        <div class="hero-visual" aria-label="罗曼星球小怪物全家福">
+          <svg role="img" aria-label="素龙，粉色小龙，罗曼星球核心角色"><title>素龙</title><use href="#char-sulong"/></svg>
+          <svg role="img" aria-label="福塔，戴闪电触角与拳击手套的玫红小怪物"><title>福塔</title><use href="#char-futa"/></svg>
+          <svg role="img" aria-label="嗨皮牙，露出大牙的粉紫小怪物"><title>嗨皮牙</title><use href="#char-happy"/></svg>
+          <svg role="img" aria-label="囧囧囧，浅蓝蘑菇头小怪物"><title>囧囧囧</title><use href="#char-jiong"/></svg>
+          <svg role="img" aria-label="怦怦，心形小怪物"><title>怦怦</title><use href="#char-bomb"/></svg>
+          <svg role="img" aria-label="没柿哒，橙色柿子小怪物"><title>没柿哒</title><use href="#char-shizi"/></svg>
+        </div>
+        <div class="fact-row" aria-label="测评信息">
+          <span class="chip">40 道题</span>
+          <span class="chip">L1 入门 → L4 骨灰</span>
+          <span class="chip">约 12 分钟</span>
+          <span class="chip">7 个维度</span>
+          <span class="chip">5 级公民身份</span>
+        </div>
+        <hr class="divider">
+        <div class="grid">
+          <div>
+            <h3>怎么玩</h3>
+            <p class="lead">一题一题选，随时可以返回修改；全部答完才会揭晓身份。答错不扣分，也不限时，慢慢想。</p>
+          </div>
+          <div>
+            <h3>会看到什么</h3>
+            <p class="lead">一份等级徽章、七条维度分布、逐题判定与解析，还有按你最薄弱的维度定制的补课清单。</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="startBtn" type="button">开始认证 <svg class="btn-deco" role="img" aria-label="素龙小爪印"><title>小爪印</title><use href="#deco-paw"/></svg></button>
+        </div>
+        <details class="rule-card">
+          <summary>计分规则（点开看完整口径）</summary>
+          <p>每题 4 个选项，答对按难度加权得分：L1 入门 1 分、L2 进阶 2 分、L3 硬核 3 分、L4 骨灰 4 分；答错或未答记 0 分。40 题满分 88 分。</p>
+          <p>维度得分 = 该维度内答对题目的加权分之和 ÷ 该维度全部题目的加权分之和 × 100，共 7 个维度分别计算。</p>
+          <p>等级按得分率 R = 加权得分 ÷ 88 判定：R &lt; 30% 见习小泷包；30% ≤ R &lt; 50% 合格泷包；50% ≤ R &lt; 70% 资深泷包；70% ≤ R &lt; 88% 罗曼城荣誉公民；R ≥ 88% 城主本人。结果只由当前答案数组推导，不随机、不写死。</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="page-quiz" class="page" aria-labelledby="quiz-title" hidden>
+      <div class="card">
+        <div class="tape" aria-hidden="true"></div>
+        <div class="quiz-top">
+          <h2 id="quiz-title" style="margin:0;">罗曼城公民认证 · 答题中</h2>
+          <span class="tier-chip" id="tierChip">L1 入门</span>
+        </div>
+        <div class="seg-label" id="segLabel"></div>
+        <div class="progress-wrap">
+          <div class="progress-runner" id="progressRunner"><svg role="img" aria-label="素龙正在沿进度条前进"><title>前进中的素龙</title><use href="#char-sulong"/></svg></div>
+          <div class="progress" id="progressBar" role="progressbar" aria-label="答题进度" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0"><div class="progress-fill"></div></div>
+        </div>
+        <hr class="divider">
+        <p class="stem" id="stem"></p>
+        <ul class="options" id="options"></ul>
+        <div class="feedback" id="feedback" hidden>
+          <svg role="img" aria-label="素龙举起记下啦的贴纸"><title>记下啦</title><use href="#char-sulong"/></svg>
+          <span id="feedbackText">记下啦，可以随时改哦。</span>
+        </div>
+        <div class="empty-state" id="emptyState">
+          <svg role="img" aria-label="怦怦抱着一张空白答题卡"><title>还没选</title><use href="#char-bomb"/></svg>
+          <span>这题还空着呢，选一个再往下走吧。</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="prevBtn" type="button">上一题</button>
+          <button class="btn btn-primary" id="nextBtn" type="button">下一题 <svg class="btn-deco" role="img" aria-label="素龙小爪印"><title>小爪印</title><use href="#deco-paw"/></svg></button>
+          <button class="btn btn-primary" id="submitBtn" type="button" hidden>交卷揭晓</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-result" class="page" aria-labelledby="result-title" hidden>
+      <div class="card">
+        <div class="tape" aria-hidden="true"></div>
+        <span class="eyebrow">认证完成 · 罗曼城发来一封信</span>
+        <h2 id="result-title">你的罗曼城身份</h2>
+        <div class="result-hero">
+          <div class="badge" id="resultBadge">
+            <svg role="img" aria-label="等级徽章"><title>等级徽章</title><use href="#char-sulong" id="badgeUse"/></svg>
+            <svg class="badge-crown" role="img" aria-label="皇冠装饰"><title>皇冠</title><use href="#deco-crown"/></svg>
+          </div>
+          <div>
+            <p class="result-level" id="resultLevel"></p>
+            <p class="score-line" id="resultScore"></p>
+            <p class="score-line" id="resultExplain"></p>
+          </div>
+        </div>
+        <dl class="stat-row" id="statRow"></dl>
+        <hr class="divider">
+        <h3>七维雷达</h3>
+        <p class="lead" id="dimSummary"></p>
+        <ul class="dim-list" id="dimList"></ul>
+        <hr class="divider">
+        <h3>给你的补课清单</h3>
+        <ul class="advice" id="adviceList"></ul>
+        <hr class="divider">
+        <div class="details-box">
+          <details>
+            <summary>逐题判定与解析（40 题，含标准答案）</summary>
+            <ol class="review-list" id="reviewList"></ol>
+          </details>
+        </div>
+        <details class="rule-card">
+          <summary>这份结果是怎么算出来的</summary>
+          <p>每题答对按 L1/L2/L3/L4 分别得 1/2/3/4 分，答错或未答 0 分，满分 88 分；维度得分按各维度加权分占比换算为百分制；等级由得分率 R 落入的区间确定，R &lt; 30% 见习小泷包、30–50% 合格泷包、50–70% 资深泷包、70–88% 罗曼城荣誉公民、≥88% 城主本人。</p>
+        </details>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="retryBtn" type="button">重新认证 <svg class="btn-deco" role="img" aria-label="素龙小爪印"><title>小爪印</title><use href="#deco-paw"/></svg></button>
+          <button class="btn btn-ghost" id="editBtn" type="button">回去改答案</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">罗曼城公民认证 · 粉丝向知识小测 · 页面插画为原创 SVG 重绘，与官方周边无关联</footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+
+<script>
+(function(){
+  "use strict";
+  var TIERS = {
+    L1:{label:"L1 入门",weight:1},
+    L2:{label:"L2 进阶",weight:2},
+    L3:{label:"L3 硬核",weight:3},
+    L4:{label:"L4 骨灰",weight:4}
+  };
+  var DIMENSIONS = {
+    bio:"生平与身份", album:"专辑", song:"歌曲与歌词", concert:"演唱会",
+    fun:"演唱会及综艺趣事", ip:"应援周边 / IP", fans:"粉丝文化"
+  };
+  var ADVICE = {
+    bio:"把 2010 年出道到 2014 年成立大象音乐的时间线顺一遍，先记住首张作品与母校专业。",
+    album:"从《21世纪罗曼史》听到《十万伏特》，对照专辑封面找罗曼城的起点，再补《联名》这张概念创作集。",
+    song:"把《年轮》《一笑倾城》《那个男孩》《忽而今夏》按对应剧集排一播放列表，OST 维度马上就能补起来。",
+    concert:"补一遍「登陆星球」→「十万伏特」→「罗曼前传」的巡演时间线，重点记收官场馆与首站城市。",
+    fun:"翻一翻巡演嘉宾合唱表，再看两期《五十公里桃花坞》的临场互动，趣事题就不陌生了。",
+    ip:"从素龙、福塔、嗨皮牙、囧囧囧开始认全 22 位罗曼公民，顺手记下各自的名字梗与设定。",
+    fans:"记住粉丝名、粉色应援色和那句应援口号，下次全场大合唱歌词就不会卡壳。"
+  };
+  var QUESTIONS = [
+    {id:1,tier:"L1",dimension:"fans",stem:"汪苏泷的粉丝统称是什么？",options:["小泷包","小汤圆","小飞侠","紫米"],answer:0,explain:"粉丝名是「小泷包」，日常也常简称为「泷包」。",evidence:"QQ音乐艺人资料、百度百科汪苏泷词条"},
+    {id:2,tier:"L1",dimension:"fans",stem:"汪苏泷的应援色是哪一种？",options:["粉色","蓝色","紫色","绿色"],answer:0,explain:"应援色是粉色，罗曼星球的整体视觉也以粉色为主基调。",evidence:"QQ音乐艺人资料、澎湃新闻《很会唱的汪苏泷，也很会做IP》"},
+    {id:3,tier:"L1",dimension:"fans",stem:"下面哪一句是流传最广的应援口号？",options:["苏音唯美，爱泷不悔","星辰大海，一路相随","音你不同，青春有泷","一路向泷，永不散场"],answer:0,explain:"应援口号是「苏音唯美，爱泷不悔」。",evidence:"QQ音乐艺人资料『应援口号』字段"},
+    {id:4,tier:"L1",dimension:"song",stem:"《有点甜》是汪苏泷与哪个组合合唱的？",options:["BY2","S.H.E","凤凰传奇","牛奶咖啡"],answer:0,explain:"《有点甜》由汪苏泷与 BY2 合唱，收录于 2012 年专辑《万有引力》。",evidence:"百度百科汪苏泷词条、Apple Music 艺人简介"},
+    {id:5,tier:"L1",dimension:"song",stem:"《年轮》是为哪部电视剧演唱的歌曲？",options:["《花千骨》","《三生三世十里桃花》","《香蜜沉沉烬如霜》","《甄嬛传》"],answer:0,explain:"《年轮》是电视剧《花千骨》的歌曲，2015 年发布。",evidence:"Apple Music 艺人简介、凤凰网娱乐、QQ音乐艺人资料"},
+    {id:6,tier:"L1",dimension:"song",stem:"《一笑倾城》是哪部剧的片头曲？",options:["《微微一笑很倾城》","《夏至未至》","《最好的我们》","《忽而今夏》"],answer:0,explain:"2016 年，汪苏泷为《微微一笑很倾城》创作并演唱片头曲《一笑倾城》。",evidence:"QQ音乐艺人资料、找歌词网 OST 作品表"},
+    {id:7,tier:"L1",dimension:"song",stem:"《那个男孩》是哪部电视剧的插曲？",options:["《夏至未至》","《花千骨》","《微微一笑很倾城》","《难哄》"],answer:0,explain:"《那个男孩》是电视剧《夏至未至》的插曲。",evidence:"榜中榜艺人资料、找歌词网 OST 作品表"},
+    {id:8,tier:"L1",dimension:"bio",stem:"汪苏泷的英文名是什么？",options:["Silence","Jason","Wallace","Leo"],answer:0,explain:"他的英文名是 Silence，大学时期曾以这个名字在音乐网站发表作品。",evidence:"QQ音乐艺人资料、维基百科汪苏泷词条"},
+    {id:9,tier:"L1",dimension:"bio",stem:"汪苏泷出生于哪座城市？",options:["辽宁沈阳","黑龙江哈尔滨","吉林长春","辽宁大连"],answer:0,explain:"1989 年 9 月 17 日，他出生于辽宁省沈阳市。",evidence:"百度百科、QQ音乐艺人资料、维基百科"},
+    {id:10,tier:"L1",dimension:"bio",stem:"汪苏泷的生日是哪一天？",options:["1989年9月17日","1988年9月17日","1989年8月17日","1990年9月17日"],answer:0,explain:"生日是 1989 年 9 月 17 日，处女座。",evidence:"百度百科、QQ音乐艺人资料、Apple Music"},
+    {id:11,tier:"L1",dimension:"album",stem:"首张个人作品《慢慢懂》发行于哪一年？",options:["2010年","2012年","2014年","2016年"],answer:0,explain:"《慢慢懂》于 2010 年 11 月 19 日发行，并在母校沈阳音乐学院举办发布会。",evidence:"维基百科、找歌词网专辑年表、百度百科"},
+    {id:12,tier:"L1",dimension:"ip",stem:"罗曼星球最核心的那只粉色小龙叫什么？",options:["素龙","福塔","嗨皮牙","囧囧囧"],answer:0,explain:"核心角色是粉色小龙「素龙」，名字与「苏泷」谐音。",evidence:"澎湃新闻《很会唱的汪苏泷，也很会做IP》、QQ音乐『个人IP品牌』字段"},
+
+    {id:13,tier:"L2",dimension:"album",stem:"《有点甜》收录在哪张专辑里？",options:["《万有引力》","《慢慢懂》","《传世乐章》","《登陆计划》"],answer:0,explain:"《有点甜》收录于 2012 年 7 月 16 日发行的专辑《万有引力》。",evidence:"找歌词网专辑曲目表、QQ音乐艺人资料"},
+    {id:14,tier:"L2",dimension:"album",stem:"《传世乐章》整张专辑以什么为线索组织？",options:["古典音乐","电子舞曲","民谣叙事","影视配乐"],answer:0,explain:"2014 年发行的《传世乐章》以古典音乐为线索，融入多重元素。",evidence:"榜中榜艺人资料、找歌词网专辑年表"},
+    {id:15,tier:"L2",dimension:"album",stem:"专辑《登陆计划》的发行日期是？",options:["2015年10月12日","2014年6月26日","2017年4月28日","2018年9月14日"],answer:0,explain:"《登陆计划》于 2015 年 10 月 12 日发行。",evidence:"找歌词网专辑曲目表、榜中榜艺人资料"},
+    {id:16,tier:"L2",dimension:"album",stem:"《21世纪罗曼史》发行于哪一年？",options:["2022年","2020年","2024年","2018年"],answer:0,explain:"《21世纪罗曼史》于 2022 年 10 月 28 日发行，封面上的城市模型是罗曼城的首次亮相。",evidence:"微信公众号《汪苏泷个人演唱正式发行作品清单》、QQ音乐歌单专辑年表、澎湃新闻"},
+    {id:17,tier:"L2",dimension:"album",stem:"专辑《十万伏特》发行于哪一年？",options:["2024年","2022年","2025年","2020年"],answer:0,explain:"《十万伏特》于 2024 年 12 月 14 日发行，同名巡演自 2024 年开启。",evidence:"作品清单、QQ音乐歌单专辑年表、百度百科巡演词条"},
+    {id:18,tier:"L2",dimension:"song",stem:"电影《最好的我们》的毕业季主题曲是哪首？",options:["《耿》","《年轮》","《我想念》","《小星星》"],answer:0,explain:"《耿》是电影《最好的我们》的毕业季主题曲，2019 年发布。",evidence:"作品清单、凤凰网娱乐、微博影视OST整理"},
+    {id:19,tier:"L2",dimension:"song",stem:"与赵露思合唱、作为剧集《偷偷藏不住》主题曲的是？",options:["《只想把你偷偷藏好》","《我想念》","《忽而今夏》","《像晴天像雨天》"],answer:0,explain:"2023 年，汪苏泷与赵露思合唱《只想把你偷偷藏好》，作为《偷偷藏不住》主题曲。",evidence:"微信公众号《汪苏泷个人演唱正式发行作品清单》"},
+    {id:20,tier:"L2",dimension:"song",stem:"电影《唐人街探案2》的推广曲是哪首？",options:["《摇滚唐人街》","《吃土》","《无名之辈》","《和你在一起》"],answer:0,explain:"《摇滚唐人街》是电影《唐人街探案2》推广曲；《吃土》《无名之辈》《和你在一起》各自对应其他影片。",evidence:"榜中榜艺人资料、找歌词网 OST 作品表"},
+    {id:21,tier:"L2",dimension:"concert",stem:"2016 年 9 月首场个人演唱会「登陆星球」在北京的哪个场馆举行？",options:["奥体中心体育馆","工人体育场","五棵松体育馆","国家体育场"],answer:0,explain:"2016 年 9 月，「登陆星球」个人首场演唱会在北京奥体中心体育馆举行。",evidence:"维基百科、百度百科汪苏泷词条"},
+    {id:22,tier:"L2",dimension:"fun",stem:"2019 年参加、以唱作人原创作品对决为核心的节目是？",options:["《我是唱作人》","《歌手2024》","《蒙面唱将猜猜猜》","《天赐的声音》"],answer:0,explain:"2019 年 3 月，他加盟唱作人生态挑战节目《我是唱作人》第一季。",evidence:"QQ音乐艺人资料、QQ音乐常驻音综清单、百度百科"},
+    {id:23,tier:"L2",dimension:"fun",stem:"2024 年参加的那档直播竞演音乐节目是？",options:["《歌手2024》","《我是唱作人》","《声生不息·家年华》","《天赐的声音》"],answer:0,explain:"2024 年他参与的是《歌手2024》；《声生不息·家年华》与《天赐的声音》分别是 2023 年的节目。",evidence:"QQ音乐常驻音综清单、百度百科汪苏泷词条"},
+    {id:24,tier:"L2",dimension:"ip",stem:"「素龙」这个名字的由来是？",options:["与「苏泷」谐音","取自爱吃素的设定","粉丝投票选出的英文名","来自罗曼城的门牌号"],answer:0,explain:"素龙的名字与「苏泷」谐音，设定里温柔勇敢、喜欢吃素、爱看书。",evidence:"澎湃新闻《很会唱的汪苏泷，也很会做IP》"},
+
+    {id:25,tier:"L3",dimension:"concert",stem:"「十万伏特」巡演第一阶段 1.0 共举办多少场、历经多少城市？",options:["24 场 / 11 城","12 场 / 8 城","30 场 / 15 城","18 场 / 9 城"],answer:0,explain:"第一阶段「十万伏特 1.0」共 24 场、历经 11 个城市，场次平均动员人数超过 4 万人。",evidence:"百度百科『汪苏泷2024十万伏特巡回演唱会』词条"},
+    {id:26,tier:"L3",dimension:"concert",stem:"2025 年 12 月 31 日至 2026 年 1 月 2 日的跨年收官三场在哪个场馆？",options:["广州大学城体育中心体育场","国家体育场（鸟巢）","上海梅赛德斯-奔驰文化中心","深圳大运中心体育场"],answer:0,explain:"「十万伏特」跨年、新年、收官三场连演于广州大学城体育中心体育场。",evidence:"新浪新闻《终极狂欢！汪苏泷「十万伏特」跨年收官夜》、巡演官方海报"},
+    {id:27,tier:"L3",dimension:"concert",stem:"2025 年 10 月 31 日至 11 月 2 日连开三场「十万伏特 2.0」的是哪座城市？",options:["台州","杭州","南京","成都"],answer:0,explain:"三晚连演落在台州市体育中心体育场，每天约 3 小时、30 多首歌。",evidence:"椒江新闻网《台州·罗曼城全城狂欢》"},
+    {id:28,tier:"L3",dimension:"concert",stem:"《罗曼前传》世界巡演的首站是哪里？",options:["中国澳门","美国纽约","澳大利亚墨尔本","新加坡"],answer:0,explain:"2026 年 2 月 27 日从中国澳门开启，经纽约、西雅图、墨尔本至新加坡，31 天完成 11 场。",evidence:"光明网《好的音乐没有语言门槛，更没有「时差」》采访"},
+    {id:29,tier:"L3",dimension:"concert",stem:"罗曼城最早以城市模型形式出现在哪张专辑的封面？",options:["《21世纪罗曼史》","《十万伏特》","《大娱乐家》","《登陆计划》"],answer:0,explain:"2022 年专辑《21世纪罗曼史》封面上的城市模型是罗曼城的首次亮相，后由《十万伏特》专辑与巡演具象化。",evidence:"澎湃新闻、光明网采访"},
+    {id:30,tier:"L3",dimension:"concert",stem:"被具象化为沉浸式舞台的「罗曼城」包含下列哪组标志性符号？",options:["桃心晶体、巨型爱心发电塔、人头驾驶舱","摩天轮、旋转木马、城堡","火箭、月球车、空间站","灯塔、帆船、港口"],answer:0,explain:"罗曼城舞台的核心元素包括桃心晶体、巨型爱心发电塔、人头驾驶舱，以及裸眼 3D 大屏、无人机灯光秀。",evidence:"光明网《好的音乐没有语言门槛，更没有「时差」》采访"},
+    {id:31,tier:"L3",dimension:"ip",stem:"罗曼星球里由城主与歌迷共同构建的小怪兽共有多少只？",options:["22 只","12 只","20 只","101 只"],answer:0,explain:"罗曼星球里住着 22 只形态各异的小怪兽，官方曾以「罗曼101」为它们公布公式照。",evidence:"澎湃新闻、新浪转载的罗曼101公式照名单"},
+    {id:32,tier:"L3",dimension:"ip",stem:"那只圆滚滚的蘑菇头小怪物叫什么？",options:["囧囧囧","没柿哒","瞐瞐","怦怦"],answer:0,explain:"囧囧囧是一只圆滚滚的蘑菇头小怪物，名字在罗曼101公式照名单中。",evidence:"澎湃新闻、罗曼101公式照名单"},
+    {id:33,tier:"L3",dimension:"ip",stem:"「没柿哒」是什么形象的小怪物？",options:["一颗橙色柿子","一朵蓝色蘑菇","一条粉色小龙","一株绿色盆栽"],answer:0,explain:"没柿哒是一颗橙色的柿子形象小怪物。",evidence:"澎湃新闻《很会唱的汪苏泷，也很会做IP》"},
+    {id:34,tier:"L3",dimension:"ip",stem:"咧着一口大牙、被粉丝叫作「大呲花」的是哪位罗曼公民？",options:["嗨皮牙","福塔","素龙","合不龙嘴"],answer:0,explain:"嗨皮牙本名嗨皮牙，粉丝因它咧嘴时那口夸张的大牙坚持叫它「大呲花」。",evidence:"新浪娱乐《嗨皮牙在汪苏泷演唱会的角色设定是什么？》、今日头条演唱会报道"},
+    {id:35,tier:"L3",dimension:"bio",stem:"2014 年与徐良共同成立的音乐公司是？",options:["大象音乐","美妙音乐","华谊音乐","太合麦田"],answer:0,explain:"2014 年与美妙音乐解约后，他与徐良共同成立大象音乐（大象无形音乐）。",evidence:"百度百科、榜中榜艺人资料、维基百科（口径：大象音乐 / 大象无形音乐）"},
+    {id:36,tier:"L3",dimension:"album",stem:"《联名》是一张怎样的作品？",options:["他担任制作人、由多位歌手演唱的概念创作集","现场演唱会录音专辑","翻唱他人作品的翻唱专辑","早期作品的精选集"],answer:0,explain:"2022 年他以专辑制作人身份发行首张概念创作集《联名》，十首曲目分别由不同歌手演唱。",evidence:"维基百科汪苏泷词条、QQ音乐歌单专辑年表、作品清单曲目表"},
+
+    {id:37,tier:"L4",dimension:"fun",stem:"「十万伏特」巡演 2024 年 7 月 7 日成都场，与嘉宾合唱《小小》的是谁？",options:["容祖儿","王心凌","孙楠","张碧晨"],answer:0,explain:"成都场与容祖儿合唱《小小》；南京场与王心凌合唱《大眠》，合肥场与孙楠合唱《缘分天空》。",evidence:"百度百科巡演词条『合作曲目』表"},
+    {id:38,tier:"L4",dimension:"fun",stem:"2024 年 9 月 28 日天津场，与嘉宾合唱《年轮》的是谁？",options:["张碧晨","李荣浩","徐佳莹","陈楚生"],answer:0,explain:"天津场与张碧晨合唱《年轮》；深圳场与徐佳莹合唱《一样的月光》，重庆场与陈楚生合唱《思念一个荒废的名字》。",evidence:"百度百科巡演词条『合作曲目』表"},
+    {id:39,tier:"L4",dimension:"song",stem:"下列哪首是汪苏泷为其他歌手创作词曲、而非本人原唱的作品？",options:["《梦幻诛仙》（张碧晨）","《年轮》","《一笑倾城》","《小星星》"],answer:0,explain:"《梦幻诛仙》由他作词作曲、张碧晨演唱；他还为杨洋、戚薇等歌手创作过词曲。",evidence:"找歌词网『为他人创作歌曲』清单、Apple Music 艺人简介"},
+    {id:40,tier:"L4",dimension:"album",stem:"专辑《克制凶猛》发行于哪一年？",options:["2018年","2017年","2019年","2020年"],answer:0,explain:"《克制凶猛》于 2018 年 9 月 14 日发行，是他的第六张个人专辑。",evidence:"找歌词网专辑年表、QQ音乐歌单专辑年表"}
+  ];
+  var LEVELS = [
+    {min:0,name:"见习小泷包",char:"#char-shizi",color:"var(--color-badge-1)",blurb:"刚领到罗曼城临时通行证，粉色路灯还没认全。"},
+    {min:0.30,name:"合格泷包",char:"#char-jiong",color:"var(--color-badge-2)",blurb:"会唱副歌、认得素龙，已经能在城里不迷路。"},
+    {min:0.50,name:"资深泷包",char:"#char-happy",color:"var(--color-badge-3)",blurb:"专辑年表与巡演城市都装进脑子里了，合唱不怯场。"},
+    {min:0.70,name:"罗曼城荣誉公民",char:"#char-futa",color:"var(--color-badge-4)",blurb:"从 22 位小怪物到舞台符号都门儿清，城里给你留了座位。"},
+    {min:0.88,name:"城主本人",char:"#char-sulong",color:"var(--color-badge-5)",blurb:"连冷门曲目与幕后名单都对答如流，这城大概是你亲手搭的。"}
+  ];
+  var KEYS = ["A","B","C","D"];
+  var MAX = QUESTIONS.reduce(function(s,q){return s+TIERS[q.tier].weight;},0);
+  var state = {phase:"idle",current:0,answers:new Array(QUESTIONS.length).fill(null)};
+  var el = function(id){return document.getElementById(id);};
+  var toastTimer = null;
+
+  function toast(msg){
+    var t = el("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){t.classList.remove("show");},2600);
+  }
+  function showPage(name){
+    ["home","quiz","result"].forEach(function(p){el("page-"+p).hidden = (p !== name);});
+    window.scrollTo({top:0,behavior:"auto"});
+  }
+  function levelFor(rate){
+    var out = LEVELS[0];
+    LEVELS.forEach(function(l){if(rate >= l.min){out = l;}});
+    return out;
+  }
+  function computeResult(answers){
+    var total = 0, correct = 0, dimScore = {}, dimMax = {}, correctIds = {};
+    Object.keys(DIMENSIONS).forEach(function(d){dimScore[d]=0;dimMax[d]=0;});
+    QUESTIONS.forEach(function(q,i){
+      var w = TIERS[q.tier].weight;
+      dimMax[q.dimension] += w;
+      if(answers[i] === q.answer){
+        total += w; correct += 1; correctIds[q.id] = true; dimScore[q.dimension] += w;
+      }
+    });
+    var dims = Object.keys(DIMENSIONS).map(function(d){
+      return {key:d,name:DIMENSIONS[d],percent:dimMax[d] ? Math.round(dimScore[d]/dimMax[d]*100) : 0};
+    });
+    var rate = MAX ? total/MAX : 0;
+    return {total:total,max:MAX,rate:rate,correct:correct,wrong:QUESTIONS.length-correct,dims:dims,level:levelFor(rate),correctIds:correctIds};
+  }
+
+  function renderQuestion(){
+    var q = QUESTIONS[state.current], n = state.current+1;
+    el("tierChip").textContent = TIERS[q.tier].label;
+    el("segLabel").textContent = "第 " + (Math.floor(state.current/10)+1) + " / 4 段 · 第 " + n + " / " + QUESTIONS.length + " 题 · " + DIMENSIONS[q.dimension] + " · 当前 " + TIERS[q.tier].label;
+    el("stem").textContent = n + ". " + q.stem;
+    var pct = Math.round((n-1)/QUESTIONS.length*100);
+    document.documentElement.style.setProperty("--progress",pct);
+    el("progressBar").setAttribute("aria-valuenow",String(n-1));
+    var list = el("options");
+    list.innerHTML = "";
+    q.options.forEach(function(text,i){
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "option" + (state.answers[state.current] === i ? " selected" : "");
+      btn.setAttribute("aria-pressed",state.answers[state.current] === i ? "true" : "false");
+      var key = document.createElement("span");
+      key.className = "option-key";
+      key.textContent = KEYS[i];
+      var label = document.createElement("span");
+      label.textContent = text;
+      btn.appendChild(key); btn.appendChild(label);
+      btn.addEventListener("click",function(){selectOption(i);});
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+    var picked = state.answers[state.current] !== null;
+    el("feedback").hidden = !picked;
+    el("emptyState").hidden = picked;
+    el("prevBtn").disabled = state.current === 0;
+    var last = state.current === QUESTIONS.length-1;
+    el("nextBtn").hidden = last;
+    el("submitBtn").hidden = !last;
+  }
+  function selectOption(i){
+    state.answers[state.current] = i;
+    Array.prototype.forEach.call(el("options").querySelectorAll(".option"),function(btn,idx){
+      var on = idx === i;
+      btn.classList.toggle("selected",on);
+      btn.setAttribute("aria-pressed",on ? "true" : "false");
+    });
+    el("feedback").hidden = false;
+    el("emptyState").hidden = true;
+    el("feedbackText").textContent = "记下啦，交卷前随时可以回来改。";
+  }
+  function go(delta){
+    var next = state.current + delta;
+    if(next < 0 || next >= QUESTIONS.length){return;}
+    state.current = next;
+    renderQuestion();
+  }
+  function submit(){
+    var missing = state.answers.indexOf(null);
+    if(missing !== -1){
+      state.current = missing;
+      renderQuestion();
+      toast("还有第 " + (missing+1) + " 题没选哦，先补上再交卷～");
+      return;
+    }
+    state.phase = "done";
+    showResult();
+  }
+  function startQuiz(){
+    state.phase = "quiz";
+    state.current = 0;
+    showPage("quiz");
+    renderQuestion();
+  }
+  function resetQuiz(){
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    state.current = 0;
+    startQuiz();
+  }
+  function backToEdit(){
+    state.phase = "quiz";
+    state.current = 0;
+    showPage("quiz");
+    renderQuestion();
+    toast("改完答案再交卷，结果会重新计算。");
+  }
+
+  function confettiBurst(){
+    var box = el("confetti");
+    box.innerHTML = "";
+    var chars = ["#char-sulong","#char-futa","#char-happy","#char-jiong","#char-bomb","#char-shizi","#char-momo"];
+    var offsets = [4,13,22,31,40,49,58,67,76,85,92,97];
+    offsets.forEach(function(left,i){
+      var span = document.createElement("span");
+      span.style.left = left + "%";
+      span.style.animationDelay = "calc(var(--motion-fast) * " + (i*0.4) + ")";
+      span.style.animationDuration = "calc(var(--motion-slow) * " + (3 + (i%4)*0.5) + ")";
+      span.innerHTML = '<svg role="img" aria-label="飘落的小怪物贴纸"><title>小怪物贴纸</title><use href="' + chars[i%chars.length] + '"/></svg>';
+      box.appendChild(span);
+    });
+    setTimeout(function(){box.innerHTML = "";},4200);
+  }
+
+  function showResult(){
+    var r = computeResult(state.answers);
+    var ratePct = (r.rate*100).toFixed(1);
+    el("resultLevel").textContent = r.level.name;
+    el("resultScore").innerHTML = "加权得分 <strong>" + r.total + " / " + r.max + "</strong> · 得分率 " + ratePct + "% · 答对 " + r.correct + " 题、答错 " + r.wrong + " 题";
+    el("resultExplain").textContent = r.level.blurb + " 你的得分率 " + ratePct + "% 落在「" + r.level.name + "」区间。";
+    var badgeUse = el("badgeUse");
+    badgeUse.setAttribute("href",r.level.char);
+    el("resultBadge").querySelector("svg").setAttribute("aria-label",r.level.name + " 等级徽章");
+    el("resultBadge").style.setProperty("--badge-color",r.level.color);
+    el("resultBadge").style.background = r.level.color;
+
+    el("statRow").innerHTML =
+      '<div class="stat"><dt>加权得分</dt><dd>' + r.total + " / " + r.max + "</dd></div>" +
+      '<div class="stat"><dt>答对 / 总题数</dt><dd>' + r.correct + " / " + QUESTIONS.length + "</dd></div>" +
+      '<div class="stat"><dt>当前身份</dt><dd>' + r.level.name + "</dd></div>" +
+      '<div class="stat"><dt>最强维度</dt><dd>' + r.dims.slice().sort(function(a,b){return b.percent-a.percent;})[0].name + "</dd></div>";
+
+    var sorted = r.dims.slice().sort(function(a,b){return a.percent-b.percent;});
+    el("dimSummary").textContent = "最强的是「" + sorted[sorted.length-1].name + "」，最想补课的是「" + sorted[0].name + "」。下面按维度给出正确率。";
+    el("dimList").innerHTML = r.dims.map(function(d){
+      return '<li><div class="dim-row"><span>' + d.name + '</span><b>' + d.percent + '%</b><div class="dim-bar"><i style="width:' + d.percent + '%"></i></div></div></li>';
+    }).join("");
+
+    var adviceKeys = sorted.slice(0,3).map(function(d){return d.key;});
+    if(adviceKeys.indexOf("ip") === -1){adviceKeys.push("ip");}
+    el("adviceList").innerHTML = adviceKeys.map(function(k){
+      return "<li>" + ADVICE[k] + "</li>";
+    }).join("");
+
+    el("reviewList").innerHTML = QUESTIONS.map(function(q,i){
+      var picked = state.answers[i];
+      var ok = picked === q.answer;
+      var sticker = ok ? "#char-happy" : "#char-jiong";
+      var stickerLabel = ok ? "答对啦的嗨皮牙" : "答错了的囧囧囧";
+      return '<li class="review-item ' + (ok ? "correct" : "wrong") + '">' +
+        '<div class="review-head"><svg class="review-sticker" role="img" aria-label="' + stickerLabel + '"><title>' + stickerLabel + '</title><use href="' + sticker + '"/></svg>' +
+        '<span>第 ' + (i+1) + ' 题 · ' + (ok ? "答对" : "答错") + '</span>' +
+        '<span class="review-meta">' + TIERS[q.tier].label + " · " + DIMENSIONS[q.dimension] + '</span></div>' +
+        '<p class="review-stem">' + q.stem + '</p>' +
+        '<div class="review-answer">你的选择：<b>' + KEYS[picked] + '. ' + q.options[picked] + '</b> ｜ 标准答案：<b>' + KEYS[q.answer] + '. ' + q.options[q.answer] + '</b></div>' +
+        '<div class="review-explain">' + q.explain + '</div></li>';
+    }).join("");
+
+    showPage("result");
+    confettiBurst();
+  }
+
+  el("startBtn").addEventListener("click",startQuiz);
+  el("prevBtn").addEventListener("click",function(){go(-1);});
+  el("nextBtn").addEventListener("click",function(){go(1);});
+  el("submitBtn").addEventListener("click",submit);
+  el("retryBtn").addEventListener("click",resetQuiz);
+  el("editBtn").addEventListener("click",backToEdit);
+  document.addEventListener("keydown",function(e){
+    if(state.phase !== "quiz" || e.altKey || e.ctrlKey || e.metaKey){return;}
+    var active = document.activeElement;
+    if(active && /INPUT|TEXTAREA|SELECT/.test(active.tagName)){return;}
+    var n = parseInt(e.key,10);
+    if(n >= 1 && n <= 4){selectOption(n-1);return;}
+    if(e.key === "Enter" && active && active.tagName === "BUTTON"){return;}
+    if(e.key === "ArrowLeft"){go(-1);}
+    else if(e.key === "ArrowRight" || e.key === "Enter"){
+      if(state.current === QUESTIONS.length-1){submit();}else{go(1);}
+    }
+  });
+})();
+</script>
+</body>
+</html>
